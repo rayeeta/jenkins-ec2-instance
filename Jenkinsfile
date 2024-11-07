@@ -59,7 +59,8 @@ pipeline {
                             sh 'terraform destroy --auto-approve'
                         }
                     } else {
-                        echo "Skipping Terraform destroy as DESTROY_RESOURCES is set to true."
+                          echo "destroy as DESTROY_RESOURCES is set to true."      
+                        //echo "Skipping Terraform destroy as DESTROY_RESOURCES is set to true."
                     }
                 }
             }
