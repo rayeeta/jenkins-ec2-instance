@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "us-west-2" # Specify the AWS region
+  region = "us-west-1" # Specify the AWS region
 }
 
 # Generate an SSH key pair
@@ -40,7 +40,7 @@ resource "aws_security_group" "allow_ssh" {
 
 # Launch an EC2 instance
 resource "aws_instance" "web" {
-  ami           = "ami-0aff18ec83b712f05" #var.ami_id  Specify your desired AMI ID
+  ami           = "ami-0da424eb883458071" #var.ami_id  Specify your desired AMI ID
   instance_type = "t2.micro"
   key_name      = aws_key_pair.this.key_name
 
