@@ -50,8 +50,21 @@ pipeline {
                 }
             }
         }
-
-        stage('Terraform Destroy') {
+          stage('Terraform Destroy') {
+    steps {
+        script {
+            if (env.DESTROY_RESOURCES == 'true') {
+                echo "Destroying resources as DESTROY_RESOURCES is set to true."
+                withCredentials([aws(credentialsId: "${env.AWS_CREDENTIALS_ID}", region: 'us-east-1')]) {
+                    sh 'terraform destroy --auto-approve'
+                }
+            } else {
+                echo "Skipping Terraform destroy as DESTROY_RESOURCES is not set to true."
+            }
+        }
+    }
+}  
+       /* stage('Terraform Destroy') {
             steps {
                 script {
                     if (env.DESTROY_RESOURCES == 'true') {
@@ -63,7 +76,7 @@ pipeline {
                         //echo "Skipping Terraform destroy as DESTROY_RESOURCES is set to true."
                     }
                 }
-            }
+            } */
         }
     }
 
