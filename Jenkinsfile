@@ -7,7 +7,7 @@ pipeline {
         AWS_CREDENTIALS_ID = '975050173141'
         
         // Set this to 'true' or 'false' depending on whether you want to allow destruction
-        DESTROY_RESOURCES = 'true'
+        DESTROY_RESOURCES = 'false'
     }
 
     stages {
@@ -54,7 +54,7 @@ pipeline {
         stage('Terraform Destroy') {
             steps {
                 script {
-                    if (env.DESTROY_RESOURCES == 'true') {
+                    if (env.DESTROY_RESOURCES == 'false') {
                         withCredentials([aws(credentialsId: "${env.AWS_CREDENTIALS_ID}", region: 'us-east-1')]) {
                             sh 'terraform destroy --auto-approve'
                         }
