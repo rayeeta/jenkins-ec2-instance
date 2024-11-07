@@ -4,10 +4,10 @@ pipeline {
     environment {
         // Define any environment variables here, if needed
         // Example: AWS credentials ID for use with Terraform
-        AWS_CREDENTIALS_ID = '339712843218'
+        AWS_CREDENTIALS_ID = '975050173141'
         
         // Set this to 'true' or 'false' depending on whether you want to allow destruction
-        DESTROY_RESOURCES = 'true'
+        DESTROY_RESOURCES = 'false'
     }
 
     stages {
@@ -22,7 +22,7 @@ pipeline {
             steps {
                 script {
                     // Initialize Terraform
-                    withCredentials([aws(credentialsId: "${env.AWS_CREDENTIALS_ID}", region: 'us-west-1')]) {
+                    withCredentials([aws(credentialsId: "${env.AWS_CREDENTIALS_ID}", region: 'us-east-1')]) {
                         sh 'terraform init'
                     }
                 }
@@ -33,7 +33,7 @@ pipeline {
             steps {
                 script {
                     // Generate Terraform plan
-                    withCredentials([aws(credentialsId: "${env.AWS_CREDENTIALS_ID}", region: 'us-west-1')]) {
+                    withCredentials([aws(credentialsId: "${env.AWS_CREDENTIALS_ID}", region: 'us-east-1')]) {
                         sh 'terraform plan -out=tfplan'
                     }
                 }
@@ -44,7 +44,7 @@ pipeline {
             steps {
                 script {
                     // Apply the Terraform plan with auto-approval
-                    withCredentials([aws(credentialsId: "${env.AWS_CREDENTIALS_ID}", region: 'us-west-1')]) {
+                    withCredentials([aws(credentialsId: "${env.AWS_CREDENTIALS_ID}", region: 'us-east-1')]) {
                         sh 'terraform apply --auto-approve tfplan'
                     }
                 }
@@ -55,7 +55,7 @@ pipeline {
             steps {
                 script {
                     if (env.DESTROY_RESOURCES == 'true') {
-                        withCredentials([aws(credentialsId: "${env.AWS_CREDENTIALS_ID}", region: 'us-west-1')]) {
+                        withCredentials([aws(credentialsId: "${env.AWS_CREDENTIALS_ID}", region: 'us-east-1')]) {
                             sh 'terraform destroy --auto-approve'
                         }
                     } else {
