@@ -7,5 +7,5 @@ variable "key_name" {
 variable "ami_id" {
   description = "The AMI ID for the EC2 instance"
   type        = string
-  default     = "ami-0da424eb883458071" # Example AMI ID for Ubuntu
+  default     = "ami-0866a3c8686eaeeba" # Example AMI ID for Ubuntu
 }
