@@ -15,7 +15,7 @@ resource "aws_key_pair" "this" {
 
 # Create a security group to allow SSH access
 resource "aws_security_group" "allow_ssh" {
-  name        = "allow_ssh"
+  name        = "allow_ssh_edited"                                   // EDITED
   description = "Allow SSH inbound traffic"
 
   ingress {
@@ -34,7 +34,7 @@ resource "aws_security_group" "allow_ssh" {
   }
 
   tags = {
-    Name = "allow_ssh"
+    Name = "allow_ssh_edited"              // EDITED
   }
 }
 
