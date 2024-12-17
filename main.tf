@@ -40,7 +40,7 @@ resource "aws_security_group" "allow_ssh" {
 
 # Launch an EC2 instance
 resource "aws_instance" "web" {
-  ami           = "ami-0866a3c8686eaeeba" #var.ami_id  Specify your desired AMI ID
+  ami           = "ami-0e2c8caa4b6378d8c" #var.ami_id  Specify your desired AMI ID
   instance_type = "t2.micro"
   key_name      = aws_key_pair.this.key_name
 
