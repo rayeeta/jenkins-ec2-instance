@@ -1,4 +1,24 @@
 pipeline {
+    agent any
+    stages {
+        stage('Init') {
+            steps {
+                sh 'terraform init'
+            }
+        }
+        stage('Destroy Resources') {
+            steps {
+                sh 'terraform destroy -auto-approve'
+            }
+        }
+    }
+}
+
+
+
+
+/*
+pipeline {
     agent any  // Use any available agent
 
     environment {
@@ -84,3 +104,5 @@ pipeline {
         }
     }
 }
+
+
