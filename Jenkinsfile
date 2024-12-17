@@ -9,7 +9,7 @@ pipeline {
         AWS_CREDENTIALS_ID = '975050173141'
         
         // Set this to 'true' or 'false' depending on whether you want to allow destruction
-        DESTROY_RESOURCES = 'false'
+        DESTROY_RESOURCES = 'true'
     }
 
     stages {
